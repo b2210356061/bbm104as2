@@ -8,49 +8,59 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.LinkedList;
 
-
-
 public class PropertyJsonReader {
-     private LinkedList<Square> squares = new LinkedList<Square>();
-	 
-     public PropertyJsonReader(){
-         JSONParser processor = new JSONParser();
-         try (Reader file = new FileReader("property.json")){
-             JSONObject jsonfile = (JSONObject) processor.parse(file);
-             JSONArray Land = (JSONArray) jsonfile.get("1");
-             for(Object i:Land){
-				 
-				 //You can reach items by using statements below:
-				 Integer.parseInt((String)((JSONObject)i).get("id"));
-				 //(String)((JSONObject)i).get("name");
-				 Integer.parseInt((String)((JSONObject)i).get("cost"));
-				 //And you can add these items to any data structure (e.g. array, linkedlist etc.
-				 
-				 
-                 
-             }
-             JSONArray RailRoad = (JSONArray) jsonfile.get("2");
-             for(Object i:RailRoad){
-				 //You can reach items by using statements below:
-                //Integer.parseInt((String)((JSONObject)i).get("id"));
-				//(String)((JSONObject)i).get("name");
-				//Integer.parseInt((String)((JSONObject)i).get("cost"));
-				//And you can add these items to any data structure (e.g. array, linkedlist etc.
-             }
-			 
-             JSONArray Company = (JSONArray) jsonfile.get("3");
-             for(Object i:Company){
-				 //You can reach items by using statements below:
-                 //Integer.parseInt((String)((JSONObject)i).get("id"));
-				 //(String)((JSONObject)i).get("name");
-				 //Integer.parseInt((String)((JSONObject)i).get("cost"));
-             }
-             
-         } catch (IOException e){
-             e.printStackTrace();
-         } catch (ParseException e){
-             e.printStackTrace();
-         }
-     }
-     //You can add function(s) if you want
+    private LinkedList<Square> squares = new LinkedList<Square>();
+
+    public PropertyJsonReader() {
+        JSONParser processor = new JSONParser();
+        try (Reader file = new FileReader("property.json")) {
+            JSONObject jsonfile = (JSONObject) processor.parse(file);
+            JSONArray lands = (JSONArray) jsonfile.get("1");
+            for (Object i : lands) {
+                int id = Integer.parseInt((String) ((JSONObject) i).get("id"));
+                String name = (String) ((JSONObject) i).get("name");
+                int cost = Integer.parseInt((String) ((JSONObject) i).get("cost"));
+                squares.add(id, new Property(id, name, cost, Property.Type.LAND));
+            }
+            JSONArray railRoads = (JSONArray) jsonfile.get("2");
+            for (Object i : railRoads) {
+                int id = Integer.parseInt((String) ((JSONObject) i).get("id"));
+                String name = (String) ((JSONObject) i).get("name");
+                int cost = Integer.parseInt((String) ((JSONObject) i).get("cost"));
+                squares.add(id, new Property(id, name, cost, Property.Type.RAILROAD));
+            }
+
+            JSONArray companies = (JSONArray) jsonfile.get("3");
+            for (Object i : companies) {
+                int id = Integer.parseInt((String) ((JSONObject) i).get("id"));
+                String name = (String) ((JSONObject) i).get("name");
+                int cost = Integer.parseInt((String) ((JSONObject) i).get("cost"));
+                squares.add(id, new Property(id, name, cost, Property.Type.COMPANY));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        squares.add(1, new GoSquare());
+        /*
+        squares.add(3, chest);
+        squares.add(5, tax);
+        squares.add(8, chance);
+        squares.add(11, jail);
+        squares.add(18, chest);
+        squares.add(21, parking);
+        squares.add(23, chance);
+        squares.add(31, gotojail);
+        squares.add(34, chest);
+        squares.add(37, chance);
+        squares.add(39, tax);
+        */
+    }
+
+    public LinkedList<Square> getSquares() {
+        return squares;
+    }
 }
