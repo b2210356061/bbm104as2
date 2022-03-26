@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.LinkedList;
 
 
 
@@ -21,7 +22,7 @@ public class PropertyJsonReader {
 				 
 				 //You can reach items by using statements below:
 				 Integer.parseInt((String)((JSONObject)i).get("id"));
-				 (String)((JSONObject)i).get("name");
+				 //(String)((JSONObject)i).get("name");
 				 Integer.parseInt((String)((JSONObject)i).get("cost"));
 				 //And you can add these items to any data structure (e.g. array, linkedlist etc.
 				 
@@ -31,18 +32,18 @@ public class PropertyJsonReader {
              JSONArray RailRoad = (JSONArray) jsonfile.get("2");
              for(Object i:RailRoad){
 				 //You can reach items by using statements below:
-                Integer.parseInt((String)((JSONObject)i).get("id");
-				(String)((JSONObject)i).get("name");
-				Integer.parseInt((String)((JSONObject)i).get("cost"));
+                //Integer.parseInt((String)((JSONObject)i).get("id"));
+				//(String)((JSONObject)i).get("name");
+				//Integer.parseInt((String)((JSONObject)i).get("cost"));
 				//And you can add these items to any data structure (e.g. array, linkedlist etc.
              }
 			 
              JSONArray Company = (JSONArray) jsonfile.get("3");
              for(Object i:Company){
 				 //You can reach items by using statements below:
-                 Integer.parseInt((String)((JSONObject)i).get("id"));
-				 (String)((JSONObject)i).get("name");
-				 Integer.parseInt((String)((JSONObject)i).get("cost"));
+                 //Integer.parseInt((String)((JSONObject)i).get("id"));
+				 //(String)((JSONObject)i).get("name");
+				 //Integer.parseInt((String)((JSONObject)i).get("cost"));
              }
              
          } catch (IOException e){

@@ -1,20 +1,28 @@
-public class Player {
+public class Player extends User {
     private int position = 1, balance = 15000;
 
-    public int getPosition(){
-        return position;
-    }
-
-    public void move(int squares) {
-        position = ((position + squares -1) % 40) +1;
-    }
-
+    @Override
     public int getBalance() {
         return balance;
     }
 
-    public void addBalance(int cash) {
-        balance += cash;
+    @Override
+    public void addBalance(int diff) {
+        balance += diff;
     }
 
+    @Override
+    public void removeBalance(int diff) throws Exception {
+        balance -= diff;
+        if (balance < 0)
+            throw new Exception(name);
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void move(int squares) {
+        position = ((position + squares - 1) % 40) + 1;
+    }
 }
