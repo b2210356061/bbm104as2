@@ -1,0 +1,66 @@
+import java.util.HashMap;
+
+public class Card {
+    // This method will be called when this card is activated
+    public ThrowingBiConsumer<Player, Player> action;
+
+    // Sets the action for the method
+    public Card(String item) {
+        item = item.trim();
+        HashMap<String, Integer> financeWithBanker = new HashMap<String, Integer>() {
+            {
+                put("Pay poor tax of $15", -15);
+                put("Your building loan matures - collect $150", 150);
+                put("You have won a crossword competition - collect $100", 100);
+                put("Bank error in your favor - collect $75", 75);
+                put("Doctor's fees - Pay $50", -50);
+                put("Income Tax refund - collect $20", 20);
+                put("Life Insurance Matures - collect $100", 100);
+                put("Pay Hospital Fees of $100", -100);
+                put("Pay School Fees of $50", -50);
+                put("You inherit $100", 100);
+                put("From sale of stock you get $50", 50);
+            }
+        };
+
+        HashMap<String, Integer> financeWithOtherPlayer = new HashMap<String, Integer>() {
+            {
+                put("It is your birthday Collect $10 from each player", 10);
+                put("Grand Opera Night - collect $50 from every player for opening night seats",
+                        50);
+            }
+        };
+
+        if (financeWithBanker.containsKey(item)) {
+            // Situations including payment between the player and the banker
+            int diff = financeWithBanker.get(item);
+            action = (player, __) -> {
+                if (diff > 0) {
+                    // The banker pays the player
+                    player.addBalance(diff);
+                    Monopoly.banker.removeBalance(diff);
+                } else {
+                    // Player pays the banker
+                    player.removeBalance(diff);
+                    Monopoly.banker.addBalance(diff);
+                }
+            };
+        } else if (financeWithOtherPlayer.containsKey(item)) {
+            // Situations in which other player pays the current player
+            int diff = financeWithOtherPlayer.get(item);
+            action = (player, otherPlayer) -> {
+                otherPlayer.removeBalance(diff);
+                player.addBalance(diff);
+            };
+        } else {
+            // Other situations including movement
+            if (item.equals("Go back 3 spaces")) {
+                action = (player, __) -> player.moveBy(-3);
+            } else if (item.equals("Advance to Go (Collect $200)")) {
+                action = (player, __) -> player.moveTo(1);
+            } else if (item.equals("Advance to Leicester Square")) {
+                action = (player, __) -> player.moveTo(27);
+            }
+        }
+    }
+}

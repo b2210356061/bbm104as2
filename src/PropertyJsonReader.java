@@ -6,15 +6,16 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class PropertyJsonReader {
-    private LinkedList<Square> squares = new LinkedList<Square>();
+    private ArrayList<Square> squares = new ArrayList<Square>();
 
     public PropertyJsonReader() {
         JSONParser processor = new JSONParser();
         try (Reader file = new FileReader("property.json")) {
             JSONObject jsonfile = (JSONObject) processor.parse(file);
+
             JSONArray lands = (JSONArray) jsonfile.get("1");
             for (Object i : lands) {
                 int id = Integer.parseInt((String) ((JSONObject) i).get("id"));
@@ -22,6 +23,7 @@ public class PropertyJsonReader {
                 int cost = Integer.parseInt((String) ((JSONObject) i).get("cost"));
                 squares.add(id, new Property(id, name, cost, Property.Type.LAND));
             }
+
             JSONArray railRoads = (JSONArray) jsonfile.get("2");
             for (Object i : railRoads) {
                 int id = Integer.parseInt((String) ((JSONObject) i).get("id"));
@@ -45,22 +47,25 @@ public class PropertyJsonReader {
         }
 
         squares.add(1, new GoSquare());
-        /*
-        squares.add(3, chest);
-        squares.add(5, tax);
-        squares.add(8, chance);
-        squares.add(11, jail);
-        squares.add(18, chest);
-        squares.add(21, parking);
-        squares.add(23, chance);
-        squares.add(31, gotojail);
-        squares.add(34, chest);
-        squares.add(37, chance);
-        squares.add(39, tax);
-        */
+
+        squares.add(3, new ChestSquare());
+        squares.add(18, new ChestSquare());
+        squares.add(34, new ChestSquare());
+
+        squares.add(8, new ChanceSquare());
+        squares.add(23, new ChanceSquare());
+        squares.add(37, new ChanceSquare());
+
+        squares.add(5, new TaxSquare());
+        squares.add(39, new TaxSquare());
+
+        squares.add(11, new DummySquare()); // Jail
+        squares.add(21, new DummySquare()); // Free parking
+
+        squares.add(31, new GoToJailSquare());
     }
 
-    public LinkedList<Square> getSquares() {
+    public ArrayList<Square> getSquares() {
         return squares;
     }
 }

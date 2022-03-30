@@ -6,26 +6,27 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 
 public class ListJsonReader {
+    private ArrayList<Card> chanceCards = new ArrayList<Card>();
+    private ArrayList<Card> chestCards = new ArrayList<Card>();
+
     public ListJsonReader() {
         JSONParser processor = new JSONParser();
         try (Reader file = new FileReader("list.json")) {
             JSONObject jsonfile = (JSONObject) processor.parse(file);
+
             JSONArray chanceList = (JSONArray) jsonfile.get("chanceList");
             for (Object i : chanceList) {
-                /*
-                                You can reach items by using:
-                                ((String)((JSONObject)i).get("item"));
-                                And you can add these items to any datastructure (e.g. array,
-                   linkedlist, etc.)
-                                */
+                String item = ((String) ((JSONObject) i).get("item"));
+                chanceCards.add(new Card(item));
             }
+            
             JSONArray communityChestList = (JSONArray) jsonfile.get("communityChestList");
             for (Object i : communityChestList) {
-                // You can reach items by using:
-                //((String)((JSONObject)i).get("item"));
-                // And you can add these items to any datastructure (e.g. array, linkedlist, etc.)
+                String item = ((String) ((JSONObject) i).get("item"));
+                chestCards.add(new Card(item));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,5 +34,12 @@ public class ListJsonReader {
             e.printStackTrace();
         }
     }
-    // You can add function if you want
+
+    public ArrayList<Card> getChanceCards() {
+        return chanceCards;
+    }
+
+    public ArrayList<Card> getChestCards() {
+        return chestCards;
+    }
 }

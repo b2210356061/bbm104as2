@@ -21,11 +21,12 @@ public class Property extends Square {
                 else
                     return (int) (cost * 0.35);
 
+            case RAILROAD:
+                return 25 * owner.getRailroadsOwned();
+
             case COMPANY:
                 return 4 * dice;
 
-            case RAILROAD:
-                return 25 * owner.getRailroadsOwned();
             default:
                 return 0;
         }
