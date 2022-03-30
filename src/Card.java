@@ -1,12 +1,17 @@
 import java.util.HashMap;
 
 public class Card {
-    // This method will be called when this card is activated
+    // This method, action, will be called when this card is activated
     public ThrowingBiConsumer<Player, Player> action;
+    private String value;
 
-    // Sets the action for the method
+    /**
+     * Sets the action for a new card
+     * @param item : The value of the card
+     */
     public Card(String item) {
         item = item.trim();
+        value = item;
         HashMap<String, Integer> financeWithBanker = new HashMap<String, Integer>() {
             {
                 put("Pay poor tax of $15", -15);
@@ -26,8 +31,7 @@ public class Card {
         HashMap<String, Integer> financeWithOtherPlayer = new HashMap<String, Integer>() {
             {
                 put("It is your birthday Collect $10 from each player", 10);
-                put("Grand Opera Night - collect $50 from every player for opening night seats",
-                        50);
+                put("Grand Opera Night - collect $50 from every player for opening night seats", 50);
             }
         };
 
@@ -62,5 +66,12 @@ public class Card {
                 action = (player, __) -> player.moveTo(27);
             }
         }
+    }
+
+    /**
+     * @return : The value of the card
+     */
+    public String getValue() {
+        return value;
     }
 }

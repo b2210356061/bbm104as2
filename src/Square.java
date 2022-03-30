@@ -2,7 +2,14 @@ public abstract class Square {
     protected int id;
     protected String name;
 
-    // This method will throw an exception with the name of the player who went bankrupt.
-    public abstract void takeAction(Player player, int dice)
+    /**
+     *
+     * @param player : The player of interest
+     * @param dice   : The dice rolled
+     * @return Returns the action to be logged
+     * @throws BankruptException if a player wents bankrupt, with the player's name
+     *                           as the message
+     */
+    public abstract String takeAction(Player player, int dice)
             throws BankruptException;
 }
