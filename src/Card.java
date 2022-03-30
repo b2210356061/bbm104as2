@@ -1,12 +1,14 @@
 import java.util.HashMap;
 
 public class Card {
-    // This method, action, will be called when this card is activated
-    public ThrowingBiConsumer<Player, Player> action;
+    // This method, action, will be called when this card is activated and return
+    // the resulting action
+    public ThrowingBiFunction<Player, Player, String> action;
     private String value;
 
     /**
      * Sets the action for a new card
+     * 
      * @param item : The value of the card
      */
     public Card(String item) {
@@ -43,10 +45,12 @@ public class Card {
                     // The banker pays the player
                     player.addBalance(diff);
                     Monopoly.banker.removeBalance(diff);
+                    /// TODO return str
                 } else {
                     // Player pays the banker
                     player.removeBalance(diff);
                     Monopoly.banker.addBalance(diff);
+                    /// TODO return str
                 }
             };
         } else if (financeWithOtherPlayer.containsKey(item)) {
@@ -59,11 +63,20 @@ public class Card {
         } else {
             // Other situations including movement
             if (item.equals("Go back 3 spaces")) {
-                action = (player, __) -> player.moveBy(-3);
+                action = (player, __) -> {
+                    player.moveBy(-3);
+                    /// TODO return str
+                };
             } else if (item.equals("Advance to Go (Collect $200)")) {
-                action = (player, __) -> player.moveTo(1);
+                action = (player, __) -> {
+                    player.moveTo(1);
+                    /// TODO return str
+                };
             } else if (item.equals("Advance to Leicester Square")) {
-                action = (player, __) -> player.moveTo(27);
+                action = (player, __) -> {
+                    player.moveTo(27);
+                    /// TODO return str
+                };
             }
         }
     }

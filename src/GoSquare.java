@@ -1,8 +1,8 @@
 public class GoSquare extends Square {
     @Override
-    public void takeAction(Player player, int dice) throws BankruptException {
-        // Player takes 200tl from the banker
+    public String takeAction(Player player, int dice) throws BankruptException {
         player.addBalance(200);
         Monopoly.banker.removeBalance(200);
+        /// TODO return action
     }
 }
