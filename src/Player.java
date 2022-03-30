@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Player extends User {
     private int position = 1, railroadsOwned = 0, jailCount = 0;
+    private ArrayList<String> properties;
 
     public Player(String name) {
         this.name = name;
         this.balance = 15000;
+        properties = new ArrayList<String>();
     }
 
     public void setJailCount(int count) {
@@ -49,5 +53,13 @@ public class Player extends User {
 
     public void buyNewRailroad() {
         railroadsOwned += 1;
+    }
+
+    public void addProperty(String property) {
+        properties.add(property);
+    }
+
+    public String getProperties() {
+        return String.join(",", properties);
     }
 }

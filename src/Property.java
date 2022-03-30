@@ -1,5 +1,8 @@
 public class Property extends Square {
-    enum Type { LAND, RAILROAD, COMPANY }
+    enum Type {
+        LAND, RAILROAD, COMPANY
+    }
+
     private int cost;
     private Type type;
     private Player owner;
@@ -33,17 +36,26 @@ public class Property extends Square {
     }
 
     @Override
-    public void takeAction(Player visitor, int dice) throws BankruptException {
+    public String takeAction(Player visitor, int dice) throws BankruptException {
         if (owner == null) { // Nobody owns this property
             if (visitor.getBalance() >= cost) { // player will buy if he/she can afford it
                 owner = visitor;
+                owner.addProperty(this.name);
                 visitor.removeBalance(cost);
                 Monopoly.banker.addBalance(cost);
+
+                return visitor.getName() + " bought " + this.name;
+            } else { // The player couldn't afford to buy this property, meaning he/she went bankrupt
+                throw new BankruptException(visitor.getName());
             }
-        } else { // The other player owns this property
+        } else if (owner != visitor) { // The other player owns this property
             int rent = calculateRent(dice);
             visitor.removeBalance(rent);
             owner.addBalance(rent);
+
+            return visitor.getName() + " paid rent for " + this.name;
+        } else { // The visitor already owns this property
+            return visitor.getName() + " has " + this.name;
         }
     }
 }

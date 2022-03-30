@@ -1,14 +1,21 @@
 public class ChanceSquare extends Square {
     private static int index = 0;
 
+    /**
+     * @param player : The player who drew the card
+     * @param dice : The dice rolled
+     */
     @Override
-    public void takeAction(Player player, int dice) throws BankruptException {
-        Player otherPlayer =
-                player.getName().equals("Player 2") ? Monopoly.players[0] : Monopoly.players[1];
+    public String takeAction(Player player, int dice) throws BankruptException {
+        Player otherPlayer = player.getName().equals("Player 2") ? Monopoly.players[0] : Monopoly.players[1];
         Monopoly.chanceCards.get(index).action.apply(player, otherPlayer);
 
+        String value = Monopoly.chanceCards.get(index).getValue();
         index += 1;
         // Continue from the first card if all cards were played
-        if (index == Monopoly.chanceCards.size()) index = 0;
+        if (index == Monopoly.chanceCards.size())
+            index = 0;
+
+        return player.getName() + " draw " + value;
     }
 }

@@ -15,7 +15,7 @@ public abstract class User {
     }
 
     public final void removeBalance(int diff) throws BankruptException {
-        balance -= diff;
         if (balance < 0) throw new BankruptException(name);
+        balance -= diff;
     }
 }
