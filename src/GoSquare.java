@@ -3,6 +3,6 @@ public class GoSquare extends Square {
     public void takeAction(Player player, int dice) throws BankruptException {
         // Player takes 200tl from the banker
         player.addBalance(200);
-        banker.removeBalance(200);
+        Monopoly.banker.removeBalance(200);
     }
 }

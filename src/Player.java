@@ -10,8 +10,9 @@ public class Player extends User {
         return position;
     }
 
-    public void move(int squares) {
-        position = ((position + squares - 1) % 40) + 1;
+    public void moveBy(int dice) throws BankruptException {
+        position = ((position + dice - 1) % 40) + 1;
+        Monopoly.squares.get(position).takeAction(this, dice);
     }
 
     public int getRailroadsOwned() {

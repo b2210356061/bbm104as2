@@ -37,10 +37,12 @@ public class Property extends Square {
             if (visitor.getBalance() >= cost) { // player will buy if he/she can afford it
                 owner = visitor;
                 visitor.removeBalance(cost);
+                Monopoly.banker.addBalance(cost);
             }
         } else { // The other player owns this property
             int rent = calculateRent(dice);
             visitor.removeBalance(rent);
+            owner.addBalance(rent);
         }
     }
 }
