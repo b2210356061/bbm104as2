@@ -10,6 +10,10 @@ public class Player extends User {
         properties = new ArrayList<String>();
     }
 
+    public int getPosition() {
+        return position;
+    }
+
     public void setJailCount(int count) {
         jailCount = count;
     }
@@ -29,7 +33,7 @@ public class Player extends User {
             Monopoly.banker.removeBalance(200);
         }
         position = newPosition;
-        String action = Monopoly.squares.get(position).takeAction(this, dice);
+        String action = Monopoly.squares[position].takeAction(this, dice);
 
         if (dice == -3) {
             // If this method was called by the "Go back 3 spaces" card, return the
@@ -60,7 +64,7 @@ public class Player extends User {
         // Return the outcome of the sub action, it will be concatenated with the
         // super-action
         // and then get printed on the same line
-        return Monopoly.squares.get(position).takeAction(this, 0);
+        return Monopoly.squares[position].takeAction(this, 0);
     }
 
     /**
@@ -82,7 +86,7 @@ public class Player extends User {
     }
 
     public String getProperties() {
-        return String.join(",", properties);
+        return (properties.size() == 0 ? "" : " ") + String.join(",", properties);
     }
 
     void logAction(int dice, String action) {

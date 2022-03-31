@@ -23,9 +23,9 @@ public class Property extends Square {
     private int calculateRent(int dice) {
         switch (type) {
             case LAND:
-                if (cost <= 200)
+                if (cost <= 2000)
                     return (int) (cost * 0.4);
-                else if (cost <= 300)
+                else if (cost <= 3000)
                     return (int) (cost * 0.3);
                 else
                     return (int) (cost * 0.35);

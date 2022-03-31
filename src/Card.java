@@ -65,7 +65,7 @@ public class Card {
             if (item.equals("Go back 3 spaces")) {
                 action = (player, __) -> {
                     String subAction = player.moveBy(-3);
-                    return subAction;
+                    return " " + subAction;
                 };
             } else if (item.equals("Advance to Go (Collect $200)")) {
                 action = (player, __) -> {
@@ -75,7 +75,7 @@ public class Card {
             } else if (item.equals("Advance to Leicester Square")) {
                 action = (player, __) -> {
                     String subAction = player.moveTo(27);
-                    return subAction;
+                    return " " + subAction;
                 };
             }
         }

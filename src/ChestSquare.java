@@ -12,6 +12,6 @@ public class ChestSquare extends Square {
         if (index == Monopoly.chestCards.size())
             index = 0;
 
-        return player.getName() + " draw " + value + " " + subAction;
+        return player.getName() + " draw " + value + subAction;
     }
 }

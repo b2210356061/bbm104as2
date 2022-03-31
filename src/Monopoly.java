@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Monopoly {
     private String pathCommand;
-    public static ArrayList<Square> squares;
+    public static Square[] squares;
     public static ArrayList<Card> chanceCards, chestCards;
     public static Banker banker;
     public static Player[] players = new Player[2];

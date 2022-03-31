@@ -26,8 +26,8 @@ public class Logger {
             winner = "No winner, it's a tie";
 
         log(SEPERATOR);
-        log("Player 1\t" + balance1 + "\thave: " + Monopoly.players[0].getProperties());
-        log("Player 2\t" + balance2 + "\thave: " + Monopoly.players[1].getProperties());
+        log("Player 1\t" + balance1 + "\thave:" + Monopoly.players[0].getProperties());
+        log("Player 2\t" + balance2 + "\thave:" + Monopoly.players[1].getProperties());
         log("Banker\t" + Monopoly.banker.getBalance());
         log(winner);
         log(SEPERATOR);

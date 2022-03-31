@@ -18,17 +18,17 @@ Winner Player 2
 Player 2	6	11	10400	15100	Player 2 went to jail
 Player 1	10	36	8400	15100	Player 1 bought Liverpool Street Station
 Player 2	7	11	8400	15100	Player 2 in jail (count=1)
-Player 1	5	1	8600	15100	Player 1 is in GO square
-Player 2	3	11	8600	15100	Player 2 in jail (count=2)
-Player 1	10	11	8600	15100	Player 1 went to jail
-Player 2	8	11	8600	15100	Player 2 in jail (count=3)
-Player 1	7	11	8600	15100	Player 1 in jail (count=1)
-Player 2	12	27	8600	12500	Player 2 draw Advance to Leicester Square Player 2 bought Leicester Square
-Player 1	1	11	8600	12500	Player 1 in jail (count=2)
-Player 2	11	38	8600	9000	Player 2 bought Park Lane
+Player 1	5	1	8800	15100	Player 1 is in GO square
+Player 2	3	11	8800	15100	Player 2 in jail (count=2)
+Player 1	10	11	8800	15100	Player 1 went to jail
+Player 2	8	11	8800	15100	Player 2 in jail (count=3)
+Player 1	7	11	8800	15100	Player 1 in jail (count=1)
+Player 2	12	27	8800	12500	Player 2 draw Advance to Leicester Square Player 2 bought Leicester Square
+Player 1	1	11	8800	12500	Player 1 in jail (count=2)
+Player 2	11	38	8800	9000	Player 2 bought Park Lane
 -----------------------------------------------------------------------------------------------------------
-Player 1	8600	have: Pentonville Road,Whitehall,Fenchurch St Station,Liverpool Street Station
+Player 1	8800	have: Pentonville Road,Whitehall,Fenchurch St Station,Liverpool Street Station
 Player 2	9000	have: Leicester Square,Park Lane
-Banker	112400
+Banker	112200
 Winner Player 2
 -----------------------------------------------------------------------------------------------------------
