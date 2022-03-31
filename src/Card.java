@@ -45,13 +45,12 @@ public class Card {
                     // The banker pays the player
                     player.addBalance(diff);
                     Monopoly.banker.removeBalance(diff);
-                    /// TODO return str
                 } else {
                     // Player pays the banker
                     player.removeBalance(diff);
                     Monopoly.banker.addBalance(diff);
-                    /// TODO return str
                 }
+                return "";
             };
         } else if (financeWithOtherPlayer.containsKey(item)) {
             // Situations in which other player pays the current player
@@ -59,30 +58,31 @@ public class Card {
             action = (player, otherPlayer) -> {
                 otherPlayer.removeBalance(diff);
                 player.addBalance(diff);
+                return "";
             };
         } else {
             // Other situations including movement
             if (item.equals("Go back 3 spaces")) {
                 action = (player, __) -> {
-                    player.moveBy(-3);
-                    /// TODO return str
+                    String subAction = player.moveBy(-3);
+                    return subAction;
                 };
             } else if (item.equals("Advance to Go (Collect $200)")) {
                 action = (player, __) -> {
                     player.moveTo(1);
-                    /// TODO return str
+                    return "";
                 };
             } else if (item.equals("Advance to Leicester Square")) {
                 action = (player, __) -> {
-                    player.moveTo(27);
-                    /// TODO return str
+                    String subAction = player.moveTo(27);
+                    return subAction;
                 };
             }
         }
     }
 
     /**
-     * @return : The value of the card
+     * @return The value of the card
      */
     public String getValue() {
         return value;

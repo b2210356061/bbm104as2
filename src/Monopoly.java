@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Monopoly {
     private String pathCommand;
@@ -27,7 +26,7 @@ public class Monopoly {
         chestCards = lReader.getChestCards();
     }
 
-    private Stream<String> getCommands() {
+    private ArrayList<String> getCommands() {
         File file = new File(pathCommand);
         ArrayList<String> commands = new ArrayList<String>();
         try (Scanner reader = new Scanner(file)) {
@@ -38,32 +37,28 @@ public class Monopoly {
         } catch (Exception e) {
             System.out.println("An error occurred while reading from " + pathCommand);
         }
-        return commands.stream();
-    }
-
-    private void logStatus() {
-        Logger.log(Logger.SEPERATOR);
-        Logger.log("Player 1\t" + players[0].getBalance() + "\thave: " + players[0].getProperties());
-        Logger.log("Player 2\t" + players[1].getBalance() + "\thave: " + players[1].getProperties());
-        Logger.log("Banker\t" + banker.getBalance());
-        Logger.log(Logger.SEPERATOR);
+        return commands;
     }
 
     public void executeCommands() {
-        getCommands().forEach(line -> {
+        int lastDice = 0;
+        Player lastPlayer = null;
+        for (String line : getCommands()) {
             try {
                 if (line.equals("show()")) {
-                    logStatus();
+                    Logger.logStatus();
                 } else {
-                    Player player = line.startsWith("Player 1") ? players[0] : players[1];
-                    int dice = Integer.parseInt(line.split(";")[1]);
+                    lastPlayer = line.startsWith("Player 1") ? players[0] : players[1];
+                    lastDice = Integer.parseInt(line.split(";")[1]);
 
-                    player.moveBy(dice);
+                    lastPlayer.moveBy(lastDice);
                 }
 
             } catch (BankruptException e) {
-                String bankruptee = e.getMessage();
+                lastPlayer.logAction(lastDice, lastPlayer.getName() + " goes bankrupt");
+                break;
             }
-        });
+        }
+        Logger.logStatus();
     }
 }

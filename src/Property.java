@@ -14,6 +14,12 @@ public class Property extends Square {
         this.type = type;
     }
 
+    /**
+     * Calculates the rent of this property
+     * 
+     * @param dice : The dice player has rolled
+     * @return The amount of rent player should pay
+     */
     private int calculateRent(int dice) {
         switch (type) {
             case LAND:
@@ -46,7 +52,7 @@ public class Property extends Square {
 
                 return visitor.getName() + " bought " + this.name;
             } else { // The player couldn't afford to buy this property, meaning he/she went bankrupt
-                throw new BankruptException(visitor.getName());
+                throw new BankruptException();
             }
         } else if (owner != visitor) { // The other player owns this property
             int rent = calculateRent(dice);

@@ -4,7 +4,7 @@ public class ChanceSquare extends Square {
     @Override
     public String takeAction(Player player, int dice) throws BankruptException {
         Player otherPlayer = player.getName().equals("Player 2") ? Monopoly.players[0] : Monopoly.players[1];
-        String action = Monopoly.chanceCards.get(index).action.apply(player, otherPlayer);
+        String subAction = Monopoly.chanceCards.get(index).action.apply(player, otherPlayer);
 
         String value = Monopoly.chanceCards.get(index).getValue();
         index += 1;
@@ -12,6 +12,6 @@ public class ChanceSquare extends Square {
         if (index == Monopoly.chanceCards.size())
             index = 0;
 
-        return player.getName() + " draw " + value + " " + action;
+        return player.getName() + " draw " + value + " " + subAction;
     }
 }
