@@ -53,8 +53,8 @@ public class Player extends User {
          * 2) An "Advance to Leicester Square" card was activated
          * 3) Player moved to the "Go to Jail" square
          */
-        if (newPosition < position && newPosition != 11 && newPosition != 1) {
-            // The player has passed the Go square (not on it) and didn't go to jail
+        if (newPosition < position && newPosition != 11) {
+            // The player has passed the Go square (or on it) and didn't go to jail
             addBalance(200);
             Monopoly.banker.removeBalance(200);
         }
