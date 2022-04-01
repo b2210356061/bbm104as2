@@ -1,10 +1,17 @@
 public class DummySquare extends Square {
     /**
-     * This type of square does nothing when a player lands on it
-     * Just like "Free Parking" and "Jail" squares.
+     * This type of square does nothing other than printing when a player lands on
+     * it
+     * Just like "Free Parking" and "Go" squares.
      */
+    private final String placeName;
+
+    public DummySquare(String name) {
+        placeName = name;
+    }
+
     @Override
     public String takeAction(Player player, int dice) throws BankruptException {
-        return null;
+        return player.getName() + " is in " + placeName;
     }
 }

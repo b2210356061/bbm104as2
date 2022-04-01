@@ -45,7 +45,7 @@ public class PropertyJsonReader {
             e.printStackTrace();
         }
 
-        squares[1] = new GoSquare();
+        squares[1] = new DummySquare("GO square");
 
         squares[3] = new ChestSquare();
         squares[18] = new ChestSquare();
@@ -59,9 +59,9 @@ public class PropertyJsonReader {
         squares[39] = new TaxSquare();
 
         squares[11] = new GoToJailSquare(); // Jail
-        squares[21] = new DummySquare(); // Free parking
+        squares[21] = new DummySquare("Free Parking");
 
-        squares[31] = new GoToJailSquare();
+        squares[31] = new GoToJailSquare(); // Go to Jail
     }
 
     public Square[] getSquares() {
