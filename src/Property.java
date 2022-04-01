@@ -44,7 +44,7 @@ public class Property extends Square {
     @Override
     public String takeAction(Player visitor, int dice) throws BankruptException {
         if (owner == null) { // Nobody owns this property
-            if (visitor.getBalance() >= cost) { // player will buy if he/she can afford it
+            if (visitor.getBalance() > cost) { // player will buy if he/she can afford it
                 owner = visitor;
                 owner.addProperty(this.name);
                 visitor.removeBalance(cost);
