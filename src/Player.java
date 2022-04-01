@@ -18,6 +18,13 @@ public class Player extends User {
         jailCount = count;
     }
 
+    /**
+     * Moves the player by a certain amount
+     * 
+     * @param dice : The dice player has rolled
+     * @return The outcome of the sub action, if available
+     * @throws BankruptException
+     */
     public String moveBy(int dice) throws BankruptException {
         if (jailCount > 0) {
             // Cannot move if the player is at jail
@@ -46,6 +53,13 @@ public class Player extends User {
         return "";
     }
 
+    /**
+     * Moves the player to a certain position
+     * 
+     * @param newPosition : The new position of the player
+     * @return The outcome of the sub action, if available
+     * @throws BankruptException If a player goes bankrupt
+     */
     public String moveTo(int newPosition) throws BankruptException {
         /*
          * This method is only called in these 3 situations:
@@ -62,8 +76,7 @@ public class Player extends User {
         position = newPosition;
 
         // Return the outcome of the sub action, it will be concatenated with the
-        // super-action
-        // and then get printed on the same line
+        // super-action and then get printed on the same line
         return Monopoly.squares[position].takeAction(this, 0);
     }
 
@@ -75,20 +88,37 @@ public class Player extends User {
     }
 
     /**
-     * Adds a new railroad to the player's possessions
+     * Increases the number of railroads the player owns
      */
     public void buyNewRailroad() {
         railroadsOwned += 1;
     }
 
+    /**
+     * Adds a new property to the player's possesions
+     * 
+     * @param property : The name of the property player just bought
+     */
     public void addProperty(String property) {
         properties.add(property);
     }
 
+    /**
+     * Joins all the properties the player owns with comma as delimiter
+     * 
+     * @return A string containing all the properties player owns concatenated with
+     *         a comma in between
+     */
     public String getProperties() {
         return (properties.size() == 0 ? "" : " ") + String.join(",", properties);
     }
 
+    /**
+     * Logs the given action into the output file
+     * 
+     * @param dice   : The dice player has rolled
+     * @param action : The action to be logged
+     */
     void logAction(int dice, String action) {
         String data = name + "\t" + dice + "\t" + position + "\t" + Monopoly.players[0].getBalance() + "\t"
                 + Monopoly.players[1].getBalance() + "\t" + action;

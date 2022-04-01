@@ -3,12 +3,12 @@ public abstract class Square {
     protected String name;
 
     /**
-     *
+     * Executes the predefined action of the square
+     * 
      * @param player : The player of interest
-     * @param dice   : The dice rolled
+     * @param dice   : The dice player has rolled
      * @return Returns the action to be logged
-     * @throws BankruptException if a player wents bankrupt, with the player's name
-     *                           as the message
+     * @throws BankruptException if a player wents bankrupt
      */
     public abstract String takeAction(Player player, int dice)
             throws BankruptException;

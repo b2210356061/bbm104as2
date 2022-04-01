@@ -3,6 +3,11 @@ import java.io.*;
 public class Logger {
     public static final String SEPERATOR = "-----------------------------------------------------------------------------------------------------------";
 
+    /**
+     * Logs the given data into the output file and puts a newline
+     * 
+     * @param data : The data to be logged
+     */
     public static void log(String data) {
         File file = new File("output.txt");
         boolean isNewFile = !file.exists();
@@ -15,6 +20,9 @@ public class Logger {
         }
     }
 
+    /**
+     * Logs the current status of the game
+     */
     public static void logStatus() {
         int balance1 = Monopoly.players[0].getBalance(), balance2 = Monopoly.players[1].getBalance();
         String winner;

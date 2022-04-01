@@ -45,6 +45,7 @@ public class PropertyJsonReader {
             e.printStackTrace();
         }
 
+        // Adding all the remaining squares
         squares[1] = new DummySquare("GO square");
 
         squares[3] = new ChestSquare();

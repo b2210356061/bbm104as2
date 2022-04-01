@@ -49,6 +49,8 @@ public class Property extends Square {
                 owner.addProperty(this.name);
                 visitor.removeBalance(cost);
                 Monopoly.banker.addBalance(cost);
+                if (type == Type.RAILROAD)
+                    visitor.buyNewRailroad();
 
                 return visitor.getName() + " bought " + this.name;
             } else { // The player couldn't afford to buy this property, meaning he/she went bankrupt

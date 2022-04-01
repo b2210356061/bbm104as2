@@ -6,7 +6,7 @@ public abstract class User {
         return name;
     }
 
-    public final int getBalance(){
+    public final int getBalance() {
         return balance;
     }
 
@@ -15,7 +15,8 @@ public abstract class User {
     }
 
     public final void removeBalance(int diff) throws BankruptException {
-        if (balance <= 0) throw new BankruptException();
+        if (balance <= 0)
+            throw new BankruptException();
         balance -= diff;
     }
 }
