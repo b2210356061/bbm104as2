@@ -4,6 +4,7 @@
     ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "src/jsonsimple.jar"
+        "src/jsonsimple.jar",
+        "jsonsimple.jar"
     ]
 }
